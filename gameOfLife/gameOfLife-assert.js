@@ -18,7 +18,7 @@ var getNeighbors = function (gridArray, i,j) {
         unfilteredNeighbors.push( [ gridArray[x][0], gridArray[x][1] ] );
     }
     var neighborsOnGrid = gridArray.filter(isWithinRange);
-    console.log('neighborsOnGrid: ['+i+', '+j+'] -- ', neighborsOnGrid);
+    // console.log('neighborsOnGrid: ['+i+', '+j+'] -- ', neighborsOnGrid);
     return neighborsOnGrid;
 }
 
@@ -27,7 +27,7 @@ var isCellAlive = function(x,y){
 }
 
 var neighborsAlive = function(neighbors) {
-    console.log('cell neighbors: ', neighbors);
+    // console.log('cell neighbors: ', neighbors);
     var cellsAlive = 0;
     for(var i=0;i<neighbors.length;i++) {
         cellsAlive += isCellAlive(neighbors[i][0],neighbors[i][1]);
@@ -59,15 +59,29 @@ var createCells = function (grid) {
                 y: j,
                 alive: isCellAlive(i,j),
                 neighbors: getNeighbors(neighborsArray, i, j),
-                neighborsAlive: neighborsAlive( getNeighbors(neighborsArray, i, j) )
+                neighborsAlive: neighborsAlive( getNeighbors(neighborsArray, i, j) ),
             })
         }
     }
-    console.log(cells);
+    // console.log(cells);
     return cells;
 };
 
 var gridCells = createCells(grid);
+
+var isCellGonnaBeAlive = function(cell) {
+    // console.log('cell.alive and cell.neighborsAlive: ', cell.alive, cell.neighborsAlive);
+ return ((cell.alive==1 && cell.neighborsAlive >=2 && cell.neighborsAlive <= 3)
+ || (cell.alive === 0 && cell.neighborsAlive === 3) ) ? 1 : 0;
+}
+
+var nextGeneration = function(grid) {
+    var nextGrid = grid.map(cell => isCellGonnaBeAlive(cell) );
+    console.log('nextGrid: \n', nextGrid);
+    
+    return nextGrid;
+}
+nextGeneration( createCells(grid) );
 
 assert(Array.isArray(grid), 'grid is not an array');
 assert(grid[1][0] == 1, 'It does not equal 1');
