@@ -1,0 +1,11 @@
+{
+  "name": "traversy-tut",
+  "version": "1.0.0",
+  "description": "going through Brad Traversy's intro to node videos",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

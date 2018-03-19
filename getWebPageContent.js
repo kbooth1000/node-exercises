@@ -1,6 +1,6 @@
 var http = require('http');
 
-http.get('http://google.com', function (res) {
+var webPageContent = http.get('http://google.com', function (res) {
     console.log(res.statusCode);
     res.setEncoding('utf8');
     var rawData = '';
@@ -8,6 +8,8 @@ http.get('http://google.com', function (res) {
         rawData += chunk;
     });
     res.on('end', function () {
-        console.log('rawData: ' + rawData);
+        console.log('#rawData: ' + rawData);
     });
 })
+
+module.exports = webPageContent;

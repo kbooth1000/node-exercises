@@ -37,7 +37,6 @@ var neighborsAlive = function(neighbors) {
         cellsAlive += isCellAlive(neighbors[i][0],neighbors[i][1]);
     }
     return cellsAlive;
-    
 }
 
 var createCells = function (grid) {

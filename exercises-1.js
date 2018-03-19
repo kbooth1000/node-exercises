@@ -25,7 +25,7 @@ var askForFile = function () {
 var lookUpDns = function () {
     rl.question('Domain: ', function (domainname) {
         dnsLookup(domainname, function (ipAddress) {
-            console.log('IP Address: ' + ipAddress);
+            console.log('#IP Address: ' + ipAddress);
             rl.close();
         })
     })
@@ -37,16 +37,18 @@ var lookUpDns = function () {
 // wants to save, and for the filename to save to.
 var saveWebPage = function() {
     rl.question('URL: ', function(url) {
-        getWebPageContent(url, function(webPageContent) {
-            console.log(webPageContent);
-        })
+        // getWebPageContent(url, function(webPageContent) {
+        //     console.log('webPageContent: ',webPageContent);
+        // })
     })
-}
+};
 
 
 
 //askForFile();
-lookUpDns();
+// lookUpDns();
+saveWebPage();
+
 
 
 
